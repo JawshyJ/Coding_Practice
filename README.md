@@ -1,5 +1,5 @@
 # Coding_Practice
-I'll post all of my practice projects here, which will mostly consist of games. My objective is to learn more about coding while also creating functional programs that I'll be able to use later on.
+I'll post all of my practice projects here, which will mostly consist of games. My objective is to learn more about coding while also creating functional programs that I'll be able to use later on. I'll also improve upon past code in order to make it smaller and more efficient.
 
 
 ## [Games]
