@@ -1,4 +1,7 @@
 # 3/10/2020: Hangman game
+## Tasks
+### [] - Add 'guess word' feature
+### [] - read data from text file
 
 errors = 0
 wins = 0
