@@ -95,7 +95,15 @@ while Create == True:
         if userInput == "1":
             Name = input("Enter their new name:\n").capitalize()
         elif userInput == "2":
-            Gender = input("Enter their new gender:\n").lower().capitalize()
+            while True:
+                try:
+                    Gender = input("Enter their new gender:\n").lower().capitalize()
+                except Exception:
+                    print("Invalid input.")
+                if Gender.lower() == "male" or Gender.lower() == "female":
+                    break
+                else:
+                    print("Please enter male or female")
         elif userInput == "3":
             if Gender.lower() == "male":
                 Age = input("Enter his new age:\n")
