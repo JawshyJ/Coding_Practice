@@ -1,6 +1,11 @@
 # Coding_Practice
 I'll post all of my practice projects here, which will mostly consist of games. My objective is to learn more about coding while also creating functional programs that I'll be able to use later on. I'll also improve upon past code in order to make it smaller and more efficient.
 
+## [Calculators]
+
+###### 10/04/2019 - [Body Mass Index Calculator](https://github.com/JawshyJ/Coding_Practice/blob/master/Calculators/Body%20Mass%20Index%20Calculator.py) (Python)
+> The purpose of this code was to get familiar with Python. I'm no nutrionist, so don't count on the results being medically sound.
+
 
 ## [Games]
 
