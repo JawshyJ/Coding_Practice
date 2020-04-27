@@ -18,5 +18,5 @@ I'll post all of my practice projects here, which will mostly consist of games. 
 
 ## [File Manipulation]
 
-###### 03/17/2020 - [Character Profile Creator](https://github.com/JawshyJ/Coding_Practice/blob/master/File%20Manipulation/Character%20Profile.py) (Python)
+###### 03/17/2020 - [Character Profile Creator](https://github.com/JawshyJ/Coding_Practice/blob/master/File%20Manipulation/Character%20Profile%20Creator.py) (Python)
 > This program allows the user to create, review, and edit a character profile. It should be useful for creating basic character profiles for books or stories.
