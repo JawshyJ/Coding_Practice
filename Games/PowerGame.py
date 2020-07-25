@@ -4,6 +4,8 @@
 ## A statistics collector will keep track of how many games were lost and provide percentages of win probability
 # Purpose
 ## The purpose of this game is to mess around with probability in order to calculate how often a user can get lucky based upon equal or overwhelming chances
+# Rules
+## The player will 'roll' a hypothetical die along with the opponent. Every 5th roll will be considered a 'boss' round. The opponent has a double the likelihood of attaining a higher number than the player. If the player wins, then their pool of possible numbers doubles as well.
 
 import random
 
