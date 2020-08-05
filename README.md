@@ -21,10 +21,10 @@ I'll post all of my practice projects here, which will mostly consist of games. 
 
 ## [File Manipulation]
 
-###### 03/17/2020 - [Anime Planet Anime Export Processor.py](https://github.com/JawshyJ/Coding_Practice/blob/master/File%20Manipulation/Anime%20Plane%20Anime%20Export%20Processor.py) (Python)
+###### 08/04/2020 - [Anime Planet Anime Export Processor.py](https://github.com/JawshyJ/Coding_Practice/blob/master/File%20Manipulation/Anime%20Plane%20Anime%20Export%20Processor.py) (Python)
 > The purpose of this program is to process all of the anime from a JSON file into a neat and organized text file.
 
-###### 03/17/2020 - [Anime Planet Manga Export Processor.py](https://github.com/JawshyJ/Coding_Practice/blob/master/File%20Manipulation/Anime%20Planet%20Manga%20Export%20Processor.py) (Python)
+###### 08/04/2020 - [Anime Planet Manga Export Processor.py](https://github.com/JawshyJ/Coding_Practice/blob/master/File%20Manipulation/Anime%20Planet%20Manga%20Export%20Processor.py) (Python)
 > The purpose of this program is to process all of the manga from a JSON file into a neat and organized text file.
 
 ###### 03/17/2020 - [Character Profile Creator](https://github.com/JawshyJ/Coding_Practice/blob/master/File%20Manipulation/Character%20Profile%20Creator.py) (Python)
