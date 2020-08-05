@@ -1,5 +1,7 @@
 # 8/4/2020 Anime Plane Manga Export Processor
-# The purpose of this program is to process all of the manga from a JSON file into a neat and organized text file.
+# The purpose of this program is to process all of the manga data from a JSON file into a neat and organized text file.
+# Tasks
+## Alphabetically organize objects
 
 import json
 import datetime
@@ -21,15 +23,25 @@ with open(name) as json_file:
     DataPort.write("\nExport Date: " + data['export'].get("date"))
     DataPort.write("\nExport Version: " + data['export'].get("version"))
     DataPort.write("\n=================================")
-    for p in data['entries']:
+    for manga in data['entries']:
         DataPort.write("\n---------------------------------")
-        DataPort.write('\nName:      ' + p['name'])
-        DataPort.write('\nStatus:    ' + p['status'])
-        DataPort.write('\nStarted:   ' + str(p['started']))
-        DataPort.write('\nCompleted: ' + str(p['completed']))
-        DataPort.write('\nRating:    ' + str(p['rating']))
-        DataPort.write('\nVolume:    ' + str(p['vol']))
-        DataPort.write('\nChapter:   ' + str(p['ch']))
+        try:
+            DataPort.write('\nName:      ' + str(manga['name']))
+        except UnicodeEncodeError:
+            problemString = str(manga['name'])
+            newName = ""
+            for character in problemString:
+                if character.isalnum():
+                    newName += character
+                else:
+                    newName += "*"
+            DataPort.write('\nName:      ' + str(newName))
+        DataPort.write('\nStatus:    ' + manga['status'])
+        DataPort.write('\nStarted:   ' + str(manga['started']))
+        DataPort.write('\nCompleted: ' + str(manga['completed']))
+        DataPort.write('\nRating:    ' + str(manga['rating']))
+        DataPort.write('\nVolume:    ' + str(manga['vol']))
+        DataPort.write('\nChapter:   ' + str(manga['ch']))
         count += 1
 
 DataPort.write("\n=================================")
