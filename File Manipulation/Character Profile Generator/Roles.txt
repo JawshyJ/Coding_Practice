@@ -1,0 +1,10 @@
+Political Leader
+Sergeant
+Engineer
+Pilot
+Teacher
+Student
+Monarch
+Soldier
+General
+Architect
