@@ -27,5 +27,8 @@ I'll post all of my practice projects here, which will mostly consist of games. 
 ###### 08/04/2020 - [Anime Planet Manga Export Processor.py](https://github.com/JawshyJ/Coding_Practice/blob/master/File%20Manipulation/Anime%20Planet%20Manga%20Export%20Processor.py) (Python)
 > The purpose of this program is to process all of the manga from a JSON file into a neat and organized text file.
 
+###### 03/17/2020 - [Character Profile Generator](https://github.com/JawshyJ/Coding_Practice/tree/master/File%20Manipulation/Character%20Profile%20Generator) (Python)
+> Similar to the Character Profile Creator program, this program instead automatically generates character information, but it'll still allow users to make edits afterwards.
+
 ###### 03/17/2020 - [Character Profile Creator](https://github.com/JawshyJ/Coding_Practice/blob/master/File%20Manipulation/Character%20Profile%20Creator.py) (Python)
 > This program allows the user to create, review, and edit a character profile. It should be useful for creating basic character profiles for books or stories.
