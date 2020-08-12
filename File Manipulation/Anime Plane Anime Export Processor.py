@@ -31,7 +31,7 @@ animeList = []
 with open(name) as json_file:
     data = json.load(json_file)
     user = data['user'].get("name")
-    fileName = (user + "_Anime-Planet_Anime-Data_" + str(time.month) + "-" + str(time.day) + "-" + str(time.year) + ").txt")
+    fileName = (" Anime-Planet user_" + user + " Anime Data (" + str(time.month) + "-" + str(time.day) + "-" + str(time.year) + ").txt")
     DataPort = open(os.path.join(currentDirectory, fileName), "w")
     DataPort.write("=========[Anime-Planet Anime Data]=========")
     DataPort.write("\nName: " + user)
