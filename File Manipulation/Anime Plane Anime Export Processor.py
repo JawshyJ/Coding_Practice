@@ -77,3 +77,4 @@ DataPort.write("\nCompleted at: " + str(time.month) + "/" + str(time.day) + "/" 
 DataPort.write("\n===========================================")
 DataPort.close()
 count = 0
+print("Data written to new file: " + fileName)
