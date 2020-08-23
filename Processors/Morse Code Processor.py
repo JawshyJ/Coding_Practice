@@ -1,8 +1,5 @@
 # 8/22/2020 Morse Code Processor
 # This program will either encode or decode plaintext/morse codes, depending on the user's choice.
-# Tasks:
-## Fix the Parenthesis issue
-## Add a guide to let the user know what each character translates to
 
 import sys
 
@@ -26,16 +23,13 @@ def decode(string):
         if tempString[i] == "/":
             decodedString += " "
         elif tempString[i] in letterEncode:
-            print(string[i])
             decodedString += letterDecode[letterEncode.index(tempString[i])]
         elif tempString[i] in numberEncode:
-            print(string[i])
             decodedString += numberDecode[numberEncode.index(tempString[i])]
         elif tempString[i] in symbolEncode:
-            print(string[i])
             decodedString += symbolDecode[symbolEncode.index(tempString[i])]
         else:
-            print("Error")
+            print("Decode Error")
     return decodedString
 
 
@@ -56,10 +50,12 @@ def encode(string):
 while True:
     while True:
         try:
-            userInput = input("Type 'Encode' / 'Decode' or 'Exit'\n")
+            userInput = input("===================================\nType one of the following commands:\n- Encode\n- "
+                              "Decode\n- Guide\n- Exit\n===================================\n")
         except ValueError:
             print("huh")
-        if userInput.lower() == "encode" or userInput.lower() == "decode" or userInput.lower() == "exit":
+        if userInput.lower() == "encode" or userInput.lower() == "decode" or userInput.lower() == "guide" or \
+                userInput.lower() == "exit":
             break
         else:
             print("Invalid input.")
@@ -69,5 +65,32 @@ while True:
     elif userInput.lower() == "decode":
         userInput = input("Enter a string to decode.\n")
         print(decode(userInput))
+    elif userInput.lower() == "guide":
+        print("=============[Letters]=============")
+        print("(A) .-                   (N) -.   ")
+        print("(B) -...                 (O) ---  ")
+        print("(C) -.-.                 (P) .--. ")
+        print("(D) -..                  (Q) --.- ")
+        print("(E) .                    (R) .-.  ")
+        print("(F) ..-.                 (S) ...  ")
+        print("(G) --.                  (T) -    ")
+        print("(H) ....                 (U) ..-  ")
+        print("(I) ..                   (V) ...- ")
+        print("(J) .---                 (W) .--  ")
+        print("(K) -.-                  (X) -..- ")
+        print("(L) .-..                 (Y) -.-- ")
+        print("(M) --                   (Z) --.. ")
+        print("=========[Numbers/Symbols]=========")
+        print("(0) -----                [.] .-.-.-")
+        print("(1) .----                [,] --..--")
+        print("(2) ..---                [:] ---...")
+        print("(3) ...--                [?] ..--..")
+        print("(4) ....-                ['] .----.")
+        print("(5) .....                [-] -....-")
+        print("(6) -....                [/] -..-.")
+        print("(7) --...                [(] -.--.")
+        print("(8) ---..                [)] -.--.-")
+        print('(9) ----.                ["] .-..-.')
     else:
+        print("Exiting program.")
         sys.exit()
