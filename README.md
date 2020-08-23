@@ -32,3 +32,9 @@ I'll post all of my practice projects here, which will mostly consist of games. 
 
 ###### 03/17/2020 - [Character Profile Creator](https://github.com/JawshyJ/Coding_Practice/blob/master/File%20Manipulation/Character%20Profile%20Creator.py) (Python)
 > This program allows the user to create, review, and edit a character profile. It should be useful for creating basic character profiles for books or stories.
+
+
+## [Processors]
+
+###### 08/22/2020 - [Morse Code Processor.py](https://github.com/JawshyJ/Coding_Practice/blob/master/Processors/Morse%20Code%20Processor.py) (Python)
+> This program allows users to either encode plaintext into morse code or vice versa.
