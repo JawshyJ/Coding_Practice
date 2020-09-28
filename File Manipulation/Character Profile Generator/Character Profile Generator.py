@@ -7,7 +7,7 @@ import math
 import os
 import random
 import sys
-
+from tkinter import filedialog
 
 # Declaring the major variables here
 Gender = ""
@@ -143,6 +143,7 @@ while Generate is True:
         Review = True
         break
 
+    Review = True
     while Review == True:
         print("===========[Character Profile]===========")
         print("1_[Name:] " + Name)
@@ -195,27 +196,26 @@ while Generate is True:
         elif userInput == "10":
             Summary = input("Write new character summary about " + Name + "\n")
         elif userInput.lower() == "save":
-            FileName = Name + "_" + str(Time.month) + "-" + str(Time.day) + "-" + str(Time.year) + ".txt"
-            count = 0
+            FileName = filedialog.asksaveasfilename(initialfile=Name + ".txt", filetypes=[("TXT", "*.txt")])
             while True:
-                if os.path.isfile(FileName):
-                    count += 1
-                    print("File exists. Creating an alternative. Attempt # " + str(count))
-                    FileName = Name + "_" + str(Time.month) + "-" + str(Time.day) + "-" + str(Time.year) + " (" + str(count) + ").txt"
+                try:
+                    Dossier = open(FileName, "a+")
+                except FileNotFoundError:
+                    print("File Creation Error. Try again.")
+                    FileName = filedialog.asksaveasfilename(initialfile=Name + ".txt", filetypes=[("TXT", "*.txt")])
                 else:
-                    Dossier = open(FileName, "w")
-                    count = 0
-                    break
-            Dossier.write("[Name:] " + Name)
-            Dossier.write("\n[Gender:] " + Gender)
-            Dossier.write("\n[Age:] " + str(Age))
-            Dossier.write("\n[Height:] " + Height)
-            Dossier.write("\n[Weight:] " + Weight)
+                    if 1 + 1 is 2:
+                        break
+            Dossier.write("      [Name:] " + Name)
+            Dossier.write("\n    [Gender:] " + Gender)
+            Dossier.write("\n       [Age:] " + str(Age))
+            Dossier.write("\n    [Height:] " + Height)
+            Dossier.write("\n    [Weight:] " + Weight)
             Dossier.write("\n[Appearance:] " + Appearance)
-            Dossier.write("\n[Role:] " + Role)
-            Dossier.write("\n[Strengths:] " + Strengths)
+            Dossier.write("\n      [Role:] " + Role)
+            Dossier.write("\n [Strengths:] " + Strengths)
             Dossier.write("\n[Weaknesses:] " + Weaknesses)
-            Dossier.write("\n[Summary:] " + Summary)
+            Dossier.write("\n   [Summary:] " + Summary)
             Dossier.write("\n[Character created at: " + str(Time.month) + "/" + str(Time.day) + "/" + str(Time.year) + " (" + str(Time.hour) + ":" + str(Time.minute) + ")]")
             Dossier.close()
             print("Character created at " + str(Time.month) + "/" + str(Time.day) + "/" + str(Time.year) + " (" + str(Time.hour) + ":" + str(Time.minute) + ")")
