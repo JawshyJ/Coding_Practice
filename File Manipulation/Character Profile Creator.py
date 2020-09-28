@@ -129,14 +129,13 @@ while Create == True:
         elif userInput == "10":
             Summary = input("Write new character summary about " + Name + "\n")
         elif userInput.lower() == "save":
-            saveName = Name
-            FileName = filedialog.asksaveasfilename(initialfile=saveName + ".txt", filetypes=[("TXT", "*.txt")])
+            FileName = filedialog.asksaveasfilename(initialfile=Name + ".txt", filetypes=[("TXT", "*.txt")])
             while True:
                 try:
                     Dossier = open(FileName, "a+")
                 except FileNotFoundError:
                     print("File Creation Error. Try again.")
-                    FileName = filedialog.asksaveasfilename(initialfile=saveName + ".txt", filetypes=[("TXT", "*.txt")])
+                    FileName = filedialog.asksaveasfilename(initialfile=Name + ".txt", filetypes=[("TXT", "*.txt")])
                 else:
                     if 1+1 is 2:
                         break
