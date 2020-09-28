@@ -216,7 +216,7 @@ while Generate is True:
             Dossier.write("\n [Strengths:] " + Strengths)
             Dossier.write("\n[Weaknesses:] " + Weaknesses)
             Dossier.write("\n   [Summary:] " + Summary)
-            Dossier.write("\n[Character created at: " + str(Time.month) + "/" + str(Time.day) + "/" + str(Time.year) + " (" + str(Time.hour) + ":" + str(Time.minute) + ")]")
+            Dossier.write("\n[Character generated at: " + str(Time.month) + "/" + str(Time.day) + "/" + str(Time.year) + " (" + str(Time.hour) + ":" + str(Time.minute) + ")]")
             Dossier.close()
             print("Character created at " + str(Time.month) + "/" + str(Time.day) + "/" + str(Time.year) + " (" + str(Time.hour) + ":" + str(Time.minute) + ")")
             Review = False
