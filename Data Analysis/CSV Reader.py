@@ -5,7 +5,6 @@
 ## Make it so that the program creates a new entry for each header column
 ## User will be able to attain statistical data, such as: mean, median, mode, etc.
 ### They'll be able to choose what data they want to interact with
-## Find out how to iterate through a class object and ignore the default attributes
 
 
 ### Steps the user will go through
