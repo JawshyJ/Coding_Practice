@@ -35,7 +35,7 @@ with open(name) as json_file:
     FileName = filedialog.asksaveasfilename(initialfile=fileNameDefault, filetypes=[("TXT", "*.txt")])
     while True:
         try:
-            DataPort = open(FileName, "a+")
+            DataPort = open(FileName, "w")
         except FileNotFoundError:
             print("File Creation Error. Try again.")
             FileName = filedialog.asksaveasfilename(initialfile=fileNameDefault, filetypes=[("TXT", "*.txt")])
@@ -60,6 +60,9 @@ with open(name) as json_file:
         animeList.append(tempAnime)
         count += 1
     animeList = sorted(animeList, key=operator.attrgetter('name')) # Sorts the anime alphabetically
+    DataPort.write("\nTotal Anime:  " + str(count))
+    DataPort.write("\nCompleted at: " + str(time.month) + "/" + str(time.day) + "/" + str(time.year) + " (" + str(
+        time.hour) + ":" + str(time.minute) + ")")
     for obj in animeList:
         DataPort.write("\n-------------------------------------------")
         try:
@@ -79,11 +82,6 @@ with open(name) as json_file:
         DataPort.write('\nRating:    ' + obj.rating)
         DataPort.write('\nTimes:     ' + obj.times)
         DataPort.write('\nEpisodes:  ' + obj.eps)
-
-DataPort.write("\n===========================================")
-DataPort.write("\nTotal Anime:  " + str(count))
-DataPort.write("\nCompleted at: " + str(time.month) + "/" + str(time.day) + "/" + str(time.year) + " (" + str(time.hour) + ":" + str(time.minute) + ")")
-DataPort.write("\n===========================================")
 DataPort.close()
 count = 0
 print("Data written to new file: " + FileName)
