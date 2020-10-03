@@ -38,7 +38,7 @@ with open(name) as json_file:
             DataPort = open(FileName, "a+")
         except FileNotFoundError:
             print("File Creation Error. Try again.")
-            FileName = filedialog.asksaveasfilename(initialfile=FileName + ".txt", filetypes=[("TXT", "*.txt")])
+            FileName = filedialog.asksaveasfilename(initialfile=fileNameDefault, filetypes=[("TXT", "*.txt")])
         else:
             if 1 + 1 is 2:
                 break
