@@ -1,7 +1,7 @@
 # 8/4/2020 Anime Plane Manga Export Processor
 # The purpose of this program is to process all of the manga data from a JSON file into a neat and organized text file.
 
-versionDate = "8/12/2020"
+versionDate = "10/03/2020"
 
 import json
 import datetime
@@ -25,13 +25,24 @@ class mangaObject:
         self.volume = volume
         self.chapter = chapter
 
+
 mangaList = []
 
 with open(name) as json_file:
     data = json.load(json_file)
     user = data['user'].get("name")
-    fileName = (" Anime-Planet user_" + user + " Manga Data (" + str(time.month) + "-" + str(time.day) + "-" + str(time.year) + ").txt")
-    DataPort = open(os.path.join(currentDirectory, fileName), "w")
+    fileNameDefault = (" Anime-Planet user_" + user + " Manga Data (" + str(time.month) + "-" + str(time.day) + "-" +
+                       str(time.year) + ").txt")
+    FileName = filedialog.asksaveasfilename(initialfile=fileNameDefault, filetypes=[("TXT", "*.txt")])
+    while True:
+        try:
+            DataPort = open(FileName, "w")
+        except FileNotFoundError:
+            print("File Creation Error. Try again.")
+            FileName = filedialog.asksaveasfilename(initialfile=fileNameDefault, filetypes=[("TXT", "*.txt")])
+        else:
+            if 1 + 1 is 2:
+                break
     DataPort.write("=========[Anime-Planet Manga Data]=========")
     DataPort.write("\nName: " + user)
     DataPort.write("\nExport Date: " + data['export'].get("date"))
@@ -50,6 +61,9 @@ with open(name) as json_file:
         mangaList.append(tempManga)
         count += 1
     mangaList = sorted(mangaList, key=operator.attrgetter('name'))
+    DataPort.write("\nTotal Manga:  " + str(count))
+    DataPort.write("\nCompleted at: " + str(time.month) + "/" + str(time.day) + "/" + str(time.year) + " (" + str(
+            time.hour) + ":" + str(time.minute) + ")")
     for obj in mangaList:
         DataPort.write("\n-------------------------------------------")
         try:
@@ -69,11 +83,6 @@ with open(name) as json_file:
         DataPort.write('\nRating:    ' + obj.rating)
         DataPort.write('\nVolume:     ' + obj.volume)
         DataPort.write('\nChapter:  ' + obj.chapter)
-
-DataPort.write("\n===========================================")
-DataPort.write("\nTotal Manga:  " + str(count))
-DataPort.write("\nCompleted at: " + str(time.month) + "/" + str(time.day) + "/" + str(time.year) + " (" + str(time.hour) + ":" + str(time.minute) + ")")
-DataPort.write("\n===========================================")
 DataPort.close()
 count = 0
-print("Data written to new file: " + fileName)
+print("Data written to new file: " + FileName)
