@@ -5,6 +5,7 @@ versionDate = "10/03/2020"
 
 import json
 import datetime
+import fnmatch
 import operator
 import os
 from tkinter import filedialog
@@ -34,6 +35,8 @@ with open(name) as json_file:
     fileNameDefault = (" Anime-Planet user_" + user + " Manga Data (" + str(time.month) + "-" + str(time.day) + "-" +
                        str(time.year) + ").txt")
     FileName = filedialog.asksaveasfilename(initialfile=fileNameDefault, filetypes=[("TXT", "*.txt")])
+    if fnmatch.fnmatch(str(FileName), "*.txt") is False:
+        FileName = FileName + ".txt"
     while True:
         try:
             DataPort = open(FileName, "w")
@@ -41,7 +44,10 @@ with open(name) as json_file:
             print("File Creation Error. Try again.")
             FileName = filedialog.asksaveasfilename(initialfile=fileNameDefault, filetypes=[("TXT", "*.txt")])
         else:
-            if 1 + 1 is 2:
+            if fnmatch.fnmatch(str(FileName), "*.txt") is False:
+                FileName = FileName + ".txt"
+                break
+            else:
                 break
     DataPort.write("=========[Anime-Planet Manga Data]=========")
     DataPort.write("\nName: " + user)
