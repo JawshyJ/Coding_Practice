@@ -1,7 +1,7 @@
 # 8/4/2020 Anime Plane Anime Export Processor
 # The purpose of this program is to process all of the anime data from a JSON file into a neat and organized text file.
 
-versionDate = "8/12/2020"
+versionDate = "10/03/2020"
 
 import json
 import datetime
@@ -31,8 +31,17 @@ animeList = []
 with open(name) as json_file:
     data = json.load(json_file)
     user = data['user'].get("name")
-    fileName = (" Anime-Planet user_" + user + " Anime Data (" + str(time.month) + "-" + str(time.day) + "-" + str(time.year) + ").txt")
-    DataPort = open(os.path.join(currentDirectory, fileName), "w")
+    fileNameDefault = (" Anime-Planet user_" + user + " Anime Data (" + str(time.month) + "-" + str(time.day) + "-" + str(time.year) + ").txt")
+    FileName = filedialog.asksaveasfilename(initialfile=fileNameDefault, filetypes=[("TXT", "*.txt")])
+    while True:
+        try:
+            DataPort = open(FileName, "a+")
+        except FileNotFoundError:
+            print("File Creation Error. Try again.")
+            FileName = filedialog.asksaveasfilename(initialfile=FileName + ".txt", filetypes=[("TXT", "*.txt")])
+        else:
+            if 1 + 1 is 2:
+                break
     DataPort.write("=========[Anime-Planet Anime Data]=========")
     DataPort.write("\nName: " + user)
     DataPort.write("\nExport Date: " + data['export'].get("date"))
@@ -77,4 +86,4 @@ DataPort.write("\nCompleted at: " + str(time.month) + "/" + str(time.day) + "/" 
 DataPort.write("\n===========================================")
 DataPort.close()
 count = 0
-print("Data written to new file: " + fileName)
+print("Data written to new file: " + FileName)
