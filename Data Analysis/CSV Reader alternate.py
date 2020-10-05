@@ -20,40 +20,51 @@ import datetime
 import os
 from tkinter import filedialog
 
-name = filedialog.askopenfilename()
-currentDirectory = os.path.dirname(os.path.realpath(name))
-nameProcessed = os.path.splitext(os.path.basename(name))[0]
 time = datetime.datetime.now()
 
 
-file = open(name, newline='')
-reader = csv.reader(file)
-header = next(reader)
-
 data = []
-dataHeader = []
-
 rowCount = 0
-for row in header:
-    dataHeader.append(row)
-    rowCount += 1
-data.append(dataHeader)
-
 colCount = 0
-for row in reader:
-    rowStack = []
-    rowStack.clear()
-    colCount += 1
-    for column in row:
-        rowStack.append(column)
-    data.append(rowStack)
+maxWidth = 0
+# Base methods
+def getData():
+    global data, rowCount, colCount, maxWidth
+    data.clear()
+    rowCount = 0
+    colCount = 0
+    name = filedialog.askopenfilename()
+#    currentDirectory = os.path.dirname(os.path.realpath(name))
+#    nameProcessed = os.path.splitext(os.path.basename(name))[0]
+    file = open(name, newline='')
+    reader = csv.reader(file)
+    colCounted = False
+    for row in reader:
+        rowStack = []
+        rowStack.clear()
+        rowCount += 1
+        for column in row:
+            rowStack.append(column)
+            if colCounted is False:
+                colCount += 1
+            if len(column) > maxWidth:
+                maxWidth = int(len(column))
+        colCounted = True
+        data.append(rowStack)
 
-for i in range(0, colCount):
-    for j in range(0, rowCount):
-        if i == 0 and j != rowCount-1:
-            print("%15s" % data[i][j], end=" ")
-        elif j == rowCount-1:
-            print("%15s" % data[i][j], end="\n")
-        else:
-            print("%15s" % data[i][j], end=" ")
+def displayData():
+    global maxWidth
+    organizer = '%' + str(maxWidth) + 's'
+    for i in range(0, rowCount):
+        for j in range(0, colCount):
+            if i == 0 and j != colCount - 1:
+                print(organizer % data[i][j], end=" ")
+            elif j == colCount - 1:
+                print(organizer % data[i][j], end="\n")
+            else:
+                print(organizer % data[i][j], end=" ")
+# ------------
 
+
+getData()
+displayData()
