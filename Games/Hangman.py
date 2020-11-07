@@ -1,7 +1,8 @@
 # 3/10/2020: Hangman game
 ## Tasks
-### [] - Add 'guess word' feature
-### [] - read data from text file
+### Add 'guess word' feature
+### Read data from text file
+### Fix issue where game claims the player lost, even though they won
 
 errors = 0
 wins = 0
