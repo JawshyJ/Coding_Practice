@@ -1,5 +1,5 @@
 # Coding_Practice
-I'll post all of my practice projects here, which will mostly consist of games. My objective is to learn more about coding while also creating functional programs that I'll be able to use later on. I'll also improve upon past code in order to make it smaller and more efficient.
+I'll post all of my practice projects here, which will mostly consist of games. My objective is to learn more about coding while also creating functional programs that I'll be able to use later on. I'll also improve upon past code in order to make them shorter and more efficient.
 
 ## [Calculators]
 
@@ -8,6 +8,9 @@ I'll post all of my practice projects here, which will mostly consist of games. 
 
 
 ## [Games]
+
+###### 11/03/2020 - [Overlord](https://github.com/JawshyJ/Coding_Practice/blob/master/Games/Overlord.py) (Python)
+> I made a similar-theme game in Java while I took an introductory programming course. I'm making a different sort of game with the same mechanics, except with Python. The objective is to create a game where a user takes command of a small military cell which they can improve over time. I'm hoping to implement a 'save' system so that users can save their progress.
 
 ###### 08/04/2020 - [Blackjack](https://github.com/JawshyJ/Coding_Practice/blob/master/Games/Blackjack.py) (Python)
 > A coded version of the popular card game known as 'Blackjack'.
