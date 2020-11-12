@@ -10,7 +10,7 @@ I'll post all of my practice projects here, which will mostly consist of games. 
 ## [Games]
 
 ###### 11/03/2020 - [Overlord](https://github.com/JawshyJ/Coding_Practice/blob/master/Games/Overlord.py) (Python)
-> I made a similar-theme game in Java while I took an introductory programming course. I'm making a different sort of game with the same mechanics, except with Python. The objective is to create a game where a user takes command of a small military cell which they can improve over time. I'm hoping to implement a 'save' system so that users can save their progress.
+> I made a similar-themed game in Java while I took an introductory programming course. I'm making a different sort of game with the same mechanics, except with Python. The objective is to create a game where a user takes command of a small military cell which they can improve over time. I'm hoping to implement a 'save' system so that users can save their progress and load previous sessions.
 
 ###### 08/04/2020 - [Blackjack](https://github.com/JawshyJ/Coding_Practice/blob/master/Games/Blackjack.py) (Python)
 > A coded version of the popular card game known as 'Blackjack'.
