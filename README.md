@@ -21,8 +21,6 @@ I'll post all of my practice projects here, which will mostly consist of games. 
 ###### 03/09/2020 - [Tic Tac Toe w/ Difficulties](https://github.com/JawshyJ/Coding_Practice/blob/master/Games/Tic%20Tac%20Toe.py) (Python)
 > The code's pretty inefficient, but the objective is to create a program that would give the user a choice between easy, medium, and hard difficulties when playing a game of tic tac toe. Users will use their keyboard to play the game and the code will loop until the user wants to stop, at which point the code will display the overall stats of the game.
 
-###### 10/21/2014 - [Lottery Game](https://github.com/JawshyJ/Coding_Practice/blob/master/Games/Lottery%20Game%20Program.cpp) (C++)
-> Not sure if the date is correct, but this is one of several projects from my first coding class. The goal is for a player to try and guess a randomly generated number between 1 and 20. If the user is correct/incorrect, the program will continue, but if the user enters a negative number, then the program will end. (This was done in accordance to the rules of the assignment)
 
 ## [File Manipulation]
 
