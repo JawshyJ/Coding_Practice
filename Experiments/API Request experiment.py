@@ -19,7 +19,7 @@ import requests
 # from tkinter import filedialog
 
 appDetailsLink = "https://store.steampowered.com/api/appdetails?appids="
-appID = 218620
+appID = 10
 
 def InputCheck(phrase, optionlist, options):
     string = (phrase + "\n-----[OPTIONS]-----\n")
@@ -32,6 +32,14 @@ def InputCheck(phrase, optionlist, options):
             string = ""
         else:
             print("{Error. Select a valid option.}")
+
+try:
+    appID = int(input("Enter the steam id of a game you want the details of:\n"))
+except ValueError:
+    print("Enter an integer for the steam id. Don't enter letters, symbols, or decimals.")
+else:
+    print("--- Starting search ---")
+
 
 try:
     r = requests.get(str(appDetailsLink) + str(appID))
@@ -65,21 +73,31 @@ with open(os.path.join(sys.path[0], 'SteamApps.json'), 'r', encoding='utf-8') as
         price = "Free"
     else:
         price = data[str(appID)]['data']['price_overview'].get('final_formatted')
+    if not data[str(appID)]['data'].get('achievements'):
+        achievements = "N/A"
+    else:
+        achievements = str(data[str(appID)]['data']['achievements'].get('total')) + " achievements"
     players = "N/A - Need to work on this"
-    genres = "N/A - Need to work on this"
-    achievements = "N/A - Need to work on this"
+    genres = []
+    for genre in data[str(appID)]['data'].get('genres'):
+        genres.append(genre.get('description'))
     print("==============================")
     print(str(appID) + " - " + str(name) + " - (" + str(appID) + ")")
     print("[Type:] " + str(Type))
-    print("[Age Req.:] " + str(ageRating))
-    print("[Price:] " + str(price))
+    print("[Age Req.:] " + str(ageRating))  # INCOMPLETE
+    if data[str(appID)]['data']['price_overview'].get('discount_percent') > 0:
+        print("[Price:] " + str(price) + " (" +
+              str(data[str(appID)]['data']['price_overview'].get('discount_percent')) + "% off, " +
+              str(data[str(appID)]['data']['price_overview'].get('initial_formatted')) + " initially)")
+    else:
+        print("[Price:] " + str(price))
     print("[Desc:] " + str(shortDesc))
-    print("[Developer(s):] " + str(developers))
-    print("[Publisher(s):] " + str(publishers))
+    print("[Developer(s):] " + ','.join(developers))
+    print("[Publisher(s):] " + ','.join(publishers))
     print("[Controller Support:] " + str(controllerSupport))
     print("[Achievements:] " + str(achievements))
-    print("[Players:] " + str(players))
-    print("[Genres:] " + str(genres))
-    print("[DLC:] " + str(countDLC))
+    print("[Players:] " + str(players))  # INCOMPLETE
+    print("[Genres:] " + ','.join(genres))
+    print("[DLC:] " + str(countDLC))  # INCOMPLETE
     print("==============================")
 #    userInput = InputCheck("", ["[1] - Search another game", "[2] - Exit"], ["1", "2"])
