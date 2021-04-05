@@ -29,5 +29,3 @@ while True:
             print("Please type 1 or 2")
     if user_input is "2":
         sys.exit()
-
-
