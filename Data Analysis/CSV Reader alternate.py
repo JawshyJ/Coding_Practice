@@ -57,14 +57,17 @@ def displayData():
     organizer = '%' + str(maxWidth) + 's'
     for i in range(0, rowCount):
         for j in range(0, colCount):
-            if i == 0 and j != colCount - 1:
-                print(organizer % data[i][j], end=" ")
-            elif j == colCount - 1:
+            if j == colCount - 1:
                 print(organizer % data[i][j], end="\n")
             else:
                 print(organizer % data[i][j], end=" ")
 # ------------
 
 
+
 getData()
 displayData()
+print(str(rowCount) + " rows")
+print(str(colCount) + " columns")
+print(str(rowCount * colCount) + " elements")
+print(data[0][0])

@@ -25,7 +25,8 @@ currentDirectory = os.path.dirname(os.path.realpath(name))
 nameProcessed = os.path.splitext(os.path.basename(name))[0]
 time = datetime.datetime.now()
 
-class record:
+
+class recordClass(object):
     pass
 
 
@@ -34,13 +35,17 @@ reader = csv.reader(file)
 header = next(reader)
 data = []
 
+record = recordClass()
+
 print(header)
 for row in header:
-    #setattr(record, str(row), str(row))
+    print("row " + str(row))
+    record.row = row
+    data.append(record)
+    setattr(record, str(row), str(row))
+    print(record.__getattribute__(row))
 
-    print(record.__getattribute__(record, row))
 
-#for row in reader:
 
 print("Attributes:")
 count = 0
@@ -56,21 +61,18 @@ for row in reader:
     for column in row:
         dataRecord.append(column)
         print(column)
+    print("yea " + ', '.join(dataRecord))
+    dataRecord.clear()
 
-recordInstance = record("John", "Africa", 50)
-
-print(recordInstance)
-
-test = {attr: record() for attr in dataRecord}
 
 print("record " + str(record.Name))
-
-print("test " + str(test.Name))
 
 
 print("Data Record: " + str(dataRecord))
 
 print("Dataset: " + str(data))
+for i in range(0, len(data)):
+    print(recordClass(i))
 
 
 for row in reader:
