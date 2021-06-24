@@ -77,5 +77,3 @@ while game_active is True:
     elif user_input == "d":
         print("Exiting game.")
         sys.exit(0)
-
-
