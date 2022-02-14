@@ -26,6 +26,10 @@ while guesses < 3:
             break
         else:
             print("You've guessed the wrong number. Try again.")
+            if userInput < MysteryNumber:
+                print("(The number is higher)")
+            else:
+                print("(The number is lower)")
 
 if Won is False:
     print("You lost, the number was: " + str(MysteryNumber))
