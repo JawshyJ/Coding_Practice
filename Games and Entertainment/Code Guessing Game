@@ -3,22 +3,28 @@
 import random
 
 attempts = 10
-code = str(random.randint(1111, 9999))
+code = str(random.randint(1000, 9999))
 solved = "****"
 
 def check_guess(guess):
   global attempts
   global solved
   for i in range(0, 3):
-    if guess[i] in code:
-      if guess[i] == code[i]:
+    if str(guess[i]) in str(code):
+      if guess[i] == code[i] and guess[i].isnumeric() is False:
         convert = list(solved)
         convert[i] = guess[i]
         solved = "".join(convert)
+        print("Correct number in correct spot: " + guess[i])
       else:
         convert = list(solved)
         convert[i] = "~"
         solved = "".join(convert)
+        print("Correct number in wrong spot: " + guess[i])
+    else:
+      convert = list(solved)
+      convert[i] = "*"
+      solved = "".join(convert)
   if solved == code:
     attempts = 0
     print("Code Guessed: | " + solved + " | You win!")
@@ -27,6 +33,7 @@ def check_guess(guess):
     print("No more attempts left. You lose.\n Code was: " + str(code))
 
 while attempts > 0:
+  print(code)
   print("Attempts left: " + str(attempts))
   user_input = input("Guess the 4-digit code: " + solved + "\n")
   check_guess(user_input)
