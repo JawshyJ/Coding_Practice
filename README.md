@@ -9,16 +9,16 @@ I'll post all of my practice projects here, which will mostly consist of games. 
 
 ## [Games]
 
-###### 11/03/2020 - [Overlord](https://github.com/JawshyJ/Coding_Practice/blob/master/Games/Overlord.py) (Python)
+###### 11/03/2020 - [Overlord](https://github.com/JawshyJ/Coding_Practice/blob/master/Games%20and%20Entertainment/Overlord.py) (Python)
 > I made a similar-themed game in Java while I took an introductory programming course. I'm making a different sort of game with the same mechanics, except with Python. The objective is to create a game where a user takes command of a small military cell which they can improve over time. I'm hoping to implement a 'save' system so that users can save their progress and load previous sessions.
 
-###### 08/04/2020 - [Blackjack](https://github.com/JawshyJ/Coding_Practice/blob/master/Games/Blackjack.py) (Python)
+###### 08/04/2020 - [Blackjack](https://github.com/JawshyJ/Coding_Practice/blob/master/Games%20and%20Entertainment/Blackjack.py) (Python)
 > A coded version of the popular card game known as 'Blackjack'.
 
-###### 03/10/2020 - [Hangman](https://github.com/JawshyJ/Coding_Practice/blob/master/Games/Hangman.py) (Python)
+###### 03/10/2020 - [Hangman](https://github.com/JawshyJ/Coding_Practice/blob/master/Games%20and%20Entertainment/Hangman.py) (Python)
 > A classic game of hangman transformed into code. I plan on adding more features to it, such as being able to guess the word or pulling random words from a text file. For now, the user will input a custom word or phrase and have someone else guess the word letter by letter.
 
-###### 03/09/2020 - [Tic Tac Toe w/ Difficulties](https://github.com/JawshyJ/Coding_Practice/blob/master/Games/Tic%20Tac%20Toe.py) (Python)
+###### 03/09/2020 - [Tic Tac Toe w/ Difficulties](https://github.com/JawshyJ/Coding_Practice/blob/master/Games%20and%20Entertainment/Tic%20Tac%20Toe.py) (Python)
 > The code's pretty inefficient, but the objective is to create a program that would give the user a choice between easy, medium, and hard difficulties when playing a game of tic tac toe. Users will use their keyboard to play the game and the code will loop until the user wants to stop, at which point the code will display the overall stats of the game.
 
 
