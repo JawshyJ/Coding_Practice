@@ -33,6 +33,9 @@ I'll post all of my practice projects here, which will mostly consist of games. 
 
 ## [Processors]
 
+###### 02/01/2023 - [Death Stranding Materials Batcher.py](https://github.com/JawshyJ/Coding_Practice/blob/master/Processors/Death%20Stranding%20%20Materials%20Batcher.py)
+> Script that returns the amounts of various batches for any given material for the game Death Stranding.
+
 ###### 08/22/2020 - [Morse Code Processor.py](https://github.com/JawshyJ/Coding_Practice/blob/master/Processors/Morse%20Code%20Processor.py) (Python)
 > This program allows users to either encode plaintext into morse code or vice versa.
 
