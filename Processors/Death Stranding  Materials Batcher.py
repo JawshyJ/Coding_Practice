@@ -1,14 +1,25 @@
 # 2/1/2023 - Death Stranding Materials Batcher
 # This script takes a 'total materials needed' amount and gives the player the size and amount of batches to bring.
 
+## [Challenges]
+## To maximize amounts while minimizing batches, make it so that the program loops through the list backwards. And if the lowest amount equals twice the amount of the previous amount. Remove the smallest batch and append to the previous batch. Repeat until there are no unnecessary batches.
+
 from math import trunc
 
+# Variables
 metals = [1000, 800, 600, 400, 200, 100, 50]
 ceramics = [800, 640, 480, 320, 160, 80, 40]
+
+material_list = "- Ceramic\n- Metal"
+
+user_input = ""
+materials = None
+amount = 0
 
 
 def calculate_batches(mat_list, amount):
   initial_amount = amount
+  current_total = amount
   batches = []
   sum = 0
   for batch in mat_list:
@@ -21,34 +32,47 @@ def calculate_batches(mat_list, amount):
                                    batches[len(batches) - 1][1] + 1)
     else:
       batches.append((mat_list[len(mat_list) - 1], 1))
+  # If there are two of the smallest batch numbers, remove them and add to the previous batch size amount
+  if batches[len(batches) - 1][0] == mat_list[len(mat_list) -
+                                              1] and batches[len(batches) -
+                                                             1][1] == 2:
+    batches.pop()
+    print("smallest batch popped.")
+    if batches[len(batches) - 1][0] == mat_list[len(mat_list) - 2]:
+      print("Adding to the 2nd smallest batch.")
+      batches[len(batches) - 1] = (mat_list[len(mat_list) - 2],
+                                   batches[len(batches) - 1][1] + 1)
+    else:
+      print("Adding 2nd smallest batch to recommended batches.")
+      batches.append((mat_list[len(mat_list) - 2], 1))
   for item in batches:
     sum = sum + (item[0] * item[1])
-    print(str(item[0]) + ": " + str(item[1]))
-  print("Surplus: " + str(sum) + " - " +
-        str(initial_amount).format("###,###") + " = " +
-        str(sum - initial_amount))
+    print(
+      str(item[0]) + ": " + str(item[1]) + " (" + f"{current_total:,}" +
+      " - " + f"{item[0] * item[1]:,}" + " = " +
+      f"{current_total - (item[0] * item[1]):,}" + ")")
+    current_total = current_total - (item[0] * item[1])
   if sum == initial_amount:
-    print("Perfect batch, no surplus.")
+    print("Perfect batch, no surplus\n")
+  else:
+    print(f"Surplus: {sum:,} - {initial_amount:,} = {sum - initial_amount:,}")
 
 
-# Variables
-user_input = ""
-materials = None
-amount = 0
-
+# User Menu
 while True:
   try:
-    user_input = input("Select a Material:\nMetal\nCeramic\n\n").lower()
+    user_input = input("Select a Material:\n" + material_list +
+                       "\n(Quit)\n\n").lower()
   except Exception:
-    print("Invalid input. Select 'Metal' or 'Ceramic'.")
+    print("Invalid input. Select One:\n" + material_list + "\n(Quit)\n\n")
   if user_input == "metal":
     material = metals
-    break
   elif user_input == "ceramic":
     material = ceramics
+  elif user_input == "quit":
+    print("Ending program.")
     break
   else:
-    print("Type 'Metal' or 'Ceramic'")
-
-amount = int(input("Enter the amount needed:\n"))
-calculate_batches(material, amount)
+    print("Select a Material:\n" + material_list + "\n\n")
+  amount = int(input("\nEnter the amount needed:\n"))
+  calculate_batches(material, amount)
