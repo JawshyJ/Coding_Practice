@@ -3,14 +3,14 @@
 
 ## [Challenges]
 ## To maximize amounts while minimizing batches, make it so that the program loops through the list backwards. And if the lowest amount equals twice the amount of the previous amount. Remove the smallest batch and append to the previous batch. Repeat until there are no unnecessary batches.
+## Make it so that the program can retrieve data from an Excel/CSV file and create material objects to store batches for each subject.
 
 from math import trunc
 
 # Variables
+material_list = "- Ceramic\n- Metal"
 metals = [1000, 800, 600, 400, 200, 100, 50]
 ceramics = [800, 640, 480, 320, 160, 80, 40]
-
-material_list = "- Ceramic\n- Metal"
 
 user_input = ""
 materials = None
@@ -39,7 +39,7 @@ def calculate_batches(mat_list, amount):
                                                                1][1] == 2:
         batches.pop()
         print("smallest batch popped.")
-        if batches[len(batches) - 1][0] == mat_list[len(mat_list) - 2]:
+        if len(batches) > 1 and batches[len(batches) - 1][0] == mat_list[len(mat_list) - 2]:
             print("Adding to the 2nd smallest batch.")
             batches[len(batches) - 1] = (mat_list[len(mat_list) - 2],
                                          batches[len(batches) - 1][1] + 1)
@@ -67,7 +67,7 @@ while True:
         user_input = input("Select a Material:\n" + material_list +
                            "\n(Quit)\n\n").lower()
     except Exception:
-        print("Invalid input. Select One:\n" + material_list + "\n(Quit)\n\n")
+        print("Invalid input. Select One:\n" + material_list + "\n- (Quit)\n\n")
     if user_input == "metal":
         material = metals
     elif user_input == "ceramic":
