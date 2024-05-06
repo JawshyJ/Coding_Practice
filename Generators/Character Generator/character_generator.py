@@ -46,14 +46,15 @@ from tkinter import filedialog
 user_input = ""
 
 # Bias Values
-bias_gender = ["", 0.0] # M/F, bias percentage
-bias_race = ["", 0.0] #
-bias_age = ["", 0.0]
+bias_check = False
+bias_gender = ["", 0]  # M/F, bias percentage
+bias_race = ["", 0]  #
+bias_age = ["", 0]
 
 class characterObject:
     def __init__(self, gender, race, ethnicity, first_name, last_name, skin_tone, age, sexuality, occupation, height,
                  weight, hair_color, eye_color, virtue, vice, morality):
-        self.gender = gender
+        self.gender = gender  # M/F
         self.race = race
         self.ethnicity = ethnicity
         self.first_name = first_name
@@ -68,13 +69,39 @@ class characterObject:
         self.eye_color = eye_color
         self.virtue = virtue
         self.vice = vice
-        self.morality = morality
+        self.morality = morality  # (Lawful/Neutral/Chaotic) (Good/Neutral/Evil)
+
+def bias_check():  # Allows users to tweak biases
+    bias_check = True
+    while True:
+        try:
+            user_input = input("Welcome to the bias check. Please select a bias:\n(A. Gender)\n(B. Race)\n(C. Age)"
+                               "\n(D. Exit)\n").lower()
+        except Exception:
+            print("Invalid input.")
+        if user_input == "a":
+            print("A.")
+            break
+        elif user_input == "b":
+            print("B.")
+            break
+        elif user_input == "c":
+            print("C.")
+            break
+        elif user_input == "d":
+            print("Exiting.")
+            break
+        else:
+            print("Invalid input.")
+
+def user_interview():  # Primary method
+    user_input = input("Would you like to account for any biases? (Yes/No)\n").lower()
+    print(user_input)
+    if user_input == "yes":
+        bias_check()
+    print("B_Program continues")
 
 
-def user_interview:
-
-
-
-
+user_interview()  # TEMPORARY
 
 
