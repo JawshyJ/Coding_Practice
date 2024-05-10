@@ -1,38 +1,37 @@
 # 5/5/2024 - Character Generator
 ## Generation Order (Per Character)
 # User selects anywhere between 1 - 1,000,000 characters to generate.
-# Gender
-# Race
-# Ethnicity
-# First Name
-    # (Based on Gender (Mostly) and Ethnicity (partially))
-# Last Name
+# [X] Gender
+# [X] Race
+# [] Ethnicity
+# [] First Name (Based on Gender (mostly) and Ethnicity (partially))
+# [] Last Name
     # (Based on Ethnicity (partially))
-# Skin Tone
+# [] Skin Tone
     # (Based mostly on Ethnicity)
-# Age
-    # (Should mostly average between 20 and 60. min/max of 0 and 100)
-# Sexuality
+# [x] Age (Should mostly average between 20 and 60. min/max of 0 and 100)
+# [] Sexuality
     # (Based on Gender and Age. Sexuality will only apply to characters after a certain age)
-# Occupation
+# [] Occupation
     # (Based on Age. 0 - 4 N/A, 4-13 School, 14+ etc.)
-# Height
+# [] Height
     # (Based on Age)
-# Weight
+# [] Weight
     # (Based on Age, Height)
-# Wealth
+# [] Wealth
     # (Based on Age, bias against ages younger than 25, but they still have a chance at high wealth)
-# Hair Color
+# [] Hair Color
     # (Based on Race, but can be a variety of colors in rare chances)
-# Eye Color
+# [] Eye Color
     # (Based on Race, but can vary in rare chances)
-# Virtue
+# [] Virtue
     # (Based on the 7 heaenly virtues)
-# Vice
+# [] Vice
     # (Based on Age and the 7 deadly sins, only one will be selected for each character. Vice will only be applied to
     # characters above a certain age)
-# Morality
+# [] Morality
     # (Based on the morality chart, high chance of good, modest chance of neutral, and small chance of evil)
+
 
 import datetime
 import math
@@ -86,7 +85,10 @@ def bias_check():  # Allows users to tweak biases
                 user_input = input("Pick Male or Female (M/F)\n").lower()
                 print(user_input)
                 if user_input == "m" or user_input == "f":
-                    bias_gender[0] = user_input
+                    if user_input == "m":
+                        bias_gender[0] == "Male"
+                    elif user_input == "f":
+                        bias_gender[0] == "Female"
                     while True:
                         try:
                             user_input = int(input("Enter a whole number 0 - 100% to designate the bias percentage"
@@ -111,26 +113,31 @@ def bias_check():  # Allows users to tweak biases
             print("Invalid input.")
 
 
-def bias_calculator(value):
-    random_value = random.randint(0, 100)
-    if random_value >= 100 - value:
-        return True
-    else:
-        return False
+def bias_calculator(list):  # Input: list[(Key, Value), ...]
+    sum = 0
+    list.sort(key=lambda sort_list: sort_list[1])  # sorts the list by the values
+    for value in range(len(list)):
+        sum += list[value][1]
+    roll = random.randint(1, sum)
+    for value in range(len(list)):
+        # print("Roll: " + str(roll) + " <=? " + str(list[value][1]) + " (" + str(list[value][0]) + ")")
+        if list[value][1] >= roll:
+            return list[value][0]
+            break
+        else:
+            roll -= list[value][1]
 
 
-def generate_gender():
+def generate_gender():  # TASK (Fix bias_calculator first, Afterwards, update the call function in here.)
+    genders = [["Male", 50], ["Female", 50]]
     if bias_gender[1] != 0:
-        if (bias_calculator(bias_gender[1])) is True:  # If the user's bias succeeds
-            if bias_gender[0] == "m":
-                return "Male"
-            if bias_gender[0] == "f":
-                return "Female"
-        else:  # If the user's bias fails
-            if bias_gender[0] == "m":
-                return "Female"
-            if bias_gender[0] == "f":
-                return "Male"
+        if bias_gender[0] == "Male":
+            genders[0][1] = bias_gender[1]
+            genders[1][1] = 100 - bias_gender[1]
+        elif bias_gender[1] == "Female":
+            genders[1][1] = bias_gender[1]
+            genders[0][1] = 100 - bias_gender[1]
+        return bias_calculator(genders)
     else:
         generation = random.randint(0, 1)
         if generation == 1:
@@ -139,19 +146,84 @@ def generate_gender():
             return "Female"
 
 
-def generate_age():
+def generate_age():  # Need to significantly increase the likelihood of the age being between 20 and 60.
+    # Infant (< 1)
+    # Toddler (1 - 3)
+    # Child (4 - 12)
+    # Teenager (13 - 19)
+    # Adult (20 - 64)
+    # Senior (65+)
     if bias_age[1] != 0:
         print("Age bias present")
     else:
-        return random.randint(0, 100)
+        return random.randint(0, 100)  # Need to make this mostly average between 20 and 60.
 
+
+def generate_race():
+    race_list = ("Caucasian", "Asian/Pacific Islander", "African")  # May add 'Other'
+    return race_list[random.randint(0, len(race_list) - 1)]
+
+
+def generate_ethnicity():  # TASK - Need Data
+    print("- Incomplete -")
+
+def generate_name(first_or_last):  # TASK - Need Data
+    print("- Incomplete -")
+
+def generate_skin_tone():  # TASK - Need Data
+    print("- Incomplete -")
+
+def generate_sexuality():  # TASK - (U: Straight/Asexual, M: Gay, F: Lesbian)
+    # Universal: Straight - (90%), Bisexual - (5%), Gay (M) / Lesbian (F) - (4%), Asexual - (1%)
+    90 + 5 + 4 + 1
+    print("- Incomplete -")
+
+def generate_occupation():  # TASK - Need Data, (Based on age, find list of many occupations)
+    print("- Incomplete -")
+
+
+def generate_height(age):  # Varies depending on the age group
+    # Infant (< 1)
+    # Toddler (1 - 3)
+    # Child (4 - 12)
+    # Teenager (13 - 19)
+    # Adult (20 - 64)
+    # Senior (65+)
+    print("- Incomplete -")
+
+
+def generate_weight():  # varies on age and height
+    print("- Incomplete -")
+
+
+def generate_wealth():
+    print("- Incomplete -")
+
+
+def generate_hair_color():
+    print("- Incomplete -")
+
+
+def generate_eye_color():
+    print("- Incomplete -")
+
+
+def generate_virtue():
+    print("- Incomplete -")
+
+
+def generate_vice():
+    print("- Incomplete -")
+
+
+def generate_morality():
+    print("- Incomplete -")
 
 
 def user_interview():  # Primary method
     while True:
         try:
             user_input = input("[Character Generator]\nWould you like to account for any biases? (Yes/No)\n").lower()
-            print("input: " + str(user_input))
         except Exception:
             print("Invalid input.")
         else:
@@ -168,38 +240,26 @@ def user_interview():  # Primary method
                         print("Invalid input.")
                     else:
                         for i in range(character_count):
-                            print(str(format(i + 1, ",")) + ", " + str(generate_gender()) + ", "
-                                  + str(generate_age()))  # ----- TEST CODE
+                            # ----- TEST CODE START
+                            print(str(format(i + 1, ",")) + ": " + str(generate_gender()) + ", "
+                                  + str(generate_age()), str(generate_race()))
+                            # ----- TEST CODE END
+                        try:
+                            user_input = input("Would you like to generate another character? (Yes / No)\n").lower()
+                        except Exception:
+                            print("Invalid input.")
+                        else:
+                            if user_input == "y" or user_input == "yes":
+                                break
+                            elif user_input == "n" or user_input == "no":
+                                sys.exit(9)
                         break
 
 # USE PYTHON PANDAS. STORE ALL VALUES TO EXCEL ROW? LOOP UNTIL COUNT IS MET.
-
-## SECTIONS
-# [x] Gender
-# [] Race (In Progress, but need data)
-# [] Ethnicity (Need data)
-# [] First Name (Need data)
-# [] Last Name (Need data)
-# [] Skin Tone (Need data)
-# [] Age (Should be easy)
-# [] Sexuality (U: Straight/Asexual, M: Gay, F: Lesbian)
-# [] Occupation (Based on age, find list of many occupations)
-# [] Height (Varies)
-# [] Weight (Varies on age and height)
-# [] Wealth
-# [] Hair Color
-# [] Eye Color
-# [] Virtue
-# [] Vice
-# [] Morality
-
-
 
 
 # user_interview()
 
 # ----- TEMPORARY SECTION
 user_interview()
-# generate_gender()
-
-
+# print(generate_gender())
