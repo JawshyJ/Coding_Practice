@@ -128,7 +128,7 @@ def bias_calculator(list):  # Input: list[(Key, Value), ...]
             roll -= list[value][1]
 
 
-def generate_gender():  # TASK (Fix bias_calculator first, Afterwards, update the call function in here.)
+def generate_gender():
     genders = [["Male", 50], ["Female", 50]]
     if bias_gender[1] != 0:
         if bias_gender[0] == "Male":
@@ -147,6 +147,10 @@ def generate_gender():  # TASK (Fix bias_calculator first, Afterwards, update th
 
 
 def generate_age():  # Need to significantly increase the likelihood of the age being between 20 and 60.
+    # [TASK]
+    ## Perhaps it'll randomly choose an age range at random first (primarily 20-64, rest will be secondary chances)
+    ## Then it'll pick a random age within that age range.
+
     # Infant (< 1)
     # Toddler (1 - 3)
     # Child (4 - 12)
@@ -183,40 +187,39 @@ def generate_occupation():  # TASK - Need Data, (Based on age, find list of many
 
 
 def generate_height(age):  # Varies depending on the age group
-    # Infant (< 1)
-    # Toddler (1 - 3)
-    # Child (4 - 12)
-    # Teenager (13 - 19)
-    # Adult (20 - 64)
-    # Senior (65+)
     print("- Incomplete -")
 
 
-def generate_weight():  # varies on age and height
+def generate_weight(age, height):  # varies on age and height
     print("- Incomplete -")
 
 
-def generate_wealth():
+def generate_wealth(age, occupation):
     print("- Incomplete -")
 
 
-def generate_hair_color():
+def generate_hair_color(ethncity):
     print("- Incomplete -")
 
 
-def generate_eye_color():
+def generate_eye_color(ethncity):
     print("- Incomplete -")
 
 
-def generate_virtue():
+def generate_virtue(age):
+    virtues = [""]
     print("- Incomplete -")
 
 
-def generate_vice():
+def generate_vice(age):
+    vices = [""]  # 7 Deadly Sins
     print("- Incomplete -")
 
 
-def generate_morality():
+def generate_morality(age):
+    moralities = [["Lawful good", 0], ["Neutral good", 0], ["Chaotic good", 0],
+                  ["Lawful neutral", 0], ["True neutral", 0], ["Chaotic neutral", 0],
+                  ["Lawful evil", 0], ["Neutral evil", 0], ["Chaotic evil", 0]]
     print("- Incomplete -")
 
 
