@@ -228,10 +228,13 @@ def generate_vice(age):
 
 
 def generate_morality(age):
-    moralities = [["Lawful good", 30], ["Neutral good", 80], ["Chaotic good", 15],
-                  ["Lawful neutral", 50], ["True neutral", 60], ["Chaotic neutral", 30],
-                  ["Lawful evil", 20], ["Neutral evil", 15], ["Chaotic evil", 5]]
-    return bias_calculator(moralities)
+    moralities = [["Lawful Good", 30], ["Neutral Good", 80], ["Chaotic Good", 15],
+                  ["Lawful Neutral", 50], ["True Neutral", 60], ["Chaotic Neutral", 30],
+                  ["Lawful Evil", 20], ["Neutral Evil", 15], ["Chaotic Evil", 5]]
+    if age >= 13:  # Setting age at
+        return bias_calculator(moralities)
+    else:
+        return "N/A"
 
 
 def user_interview():  # Primary method
