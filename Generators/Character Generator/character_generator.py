@@ -5,32 +5,20 @@
 # [X] Race
 # [] Ethnicity
 # [] First Name (Based on Gender (mostly) and Ethnicity (partially))
-# [] Last Name
-    # (Based on Ethnicity (partially))
-# [] Skin Tone
-    # (Based mostly on Ethnicity)
+# [] Last Name (Based on Ethnicity (partially))
+# [] Skin Tone (Based mostly on Ethnicity)
 # [x] Age (Should mostly average between 20 and 60. min/max of 0 and 100)
-# [] Sexuality
-    # (Based on Gender and Age. Sexuality will only apply to characters after a certain age)
-# [] Occupation
-    # (Based on Age. 0 - 4 N/A, 4-13 School, 14+ etc.)
-# [] Height
-    # (Based on Age)
-# [] Weight
-    # (Based on Age, Height)
-# [] Wealth
-    # (Based on Age, bias against ages younger than 25, but they still have a chance at high wealth)
-# [] Hair Color
-    # (Based on Race, but can be a variety of colors in rare chances)
-# [] Eye Color
-    # (Based on Race, but can vary in rare chances)
-# [] Virtue
-    # (Based on the 7 heaenly virtues)
-# [] Vice
-    # (Based on Age and the 7 deadly sins, only one will be selected for each character. Vice will only be applied to
-    # characters above a certain age)
-# [] Morality
-    # (Based on the morality chart, high chance of good, modest chance of neutral, and small chance of evil)
+# [] Sexuality (Based on Gender and Age. Sexuality will only apply to characters after a certain age)
+# [] Occupation (Based on Age. 0 - 4 N/A, 4-13 School, 14+ etc.)
+# [] Height (Based on Age)
+# [] Weight (Based on Age, Height)
+# [] Wealth (Based on Age, bias against ages younger than 25, but they still have a chance at high wealth)
+# [] Hair Color (Based on Race, but can be a variety of colors in rare chances)
+# [] Eye Color (Based on Race, but can vary in rare chances)
+# [] Virtue (Based on the 7 heavenly virtues)
+# [] Vice (Based on Age and the 7 deadly sins, only one will be selected for each character. Vice will only be
+#          applied to characters above a certain age)
+# [x] Morality (Based on the morality chart, high chance of good, modest chance of neutral, and small chance of evil)
 
 
 import datetime
@@ -77,6 +65,7 @@ class characterObject:
         self.vice = vice
         self.morality = morality  # (Lawful/Neutral/Chaotic) (Good/Neutral/Evil)
 
+
 def bias_check():  # Allows users to tweak biases
     bias_check = True
     while True:
@@ -118,7 +107,7 @@ def bias_check():  # Allows users to tweak biases
             print("Invalid input.")
 
 
-def bias_calculator(list):  # Input: list[(Key, Value), ...]
+def bias_calculator(list):  # Input: ( list[(Item, Weight), ...] )
     weighted_sum = 0
     list.sort(key=lambda sort_list: sort_list[1])  # sorts the list by the values
     for value in range(len(list)):
@@ -150,11 +139,12 @@ def generate_gender():
             return "Female"
 
 
-def generate_age():
+def generate_age():  # [TASK] Account for age bias, by showing current bias and allowing user to tweak whichever age
+                     # group.
     age_groups = [["Infant", 5], ["Toddler", 10], ["Child", 20], ["Teenager", 40], ["Adult", 80], ["Senior", 30]]
     selected_group = bias_calculator(age_groups)
     if bias_age[1] != 0:
-        print("Age bias present")
+        print("[IN PROGRESS] Age bias present")
     else:
         if selected_group == "Infant":
             return 0
@@ -175,21 +165,31 @@ def generate_race():
     return race_list[random.randint(0, len(race_list) - 1)]
 
 
-def generate_ethnicity():  # TASK - Need Data
+def generate_ethnicity(race):  # TASK - Need Data
     print("- Incomplete -")
 
-def generate_name(first_or_last):  # TASK - Need Data
+def generate_name(first_or_last):  # TASK - Need Data. Names will vary based on gender/ethnicity, to a degree
     print("- Incomplete -")
 
-def generate_skin_tone():  # TASK - Need Data
+def generate_skin_tone(ethnicity):  # TASK - Need Data
     print("- Incomplete -")
 
-def generate_sexuality():  # TASK - (U: Straight/Asexual, M: Gay, F: Lesbian)
-    # Universal: Straight - (90%), Bisexual - (5%), Gay (M) / Lesbian (F) - (4%), Asexual - (1%)
-    90 + 5 + 4 + 1
+def generate_sexuality(age, gender):  # TASK - (U: Straight/Asexual, M: Gay, F: Lesbian)
+    universal_sexualities = [["Straight", 90], ["Bisexual", 5], ["Asexual", 3]]
+    if age >= 14:  # Putting 14 since it seems like most people figure themselves out by high school.
+        if gender == "Male":
+            universal_sexualities.append(["Gay", 8])
+            return bias_calculator(universal_sexualities)
+        elif gender == "Female":
+            universal_sexualities.append(["Lesbian", 8])
+            return bias_calculator(universal_sexualities)
+        else:
+            return "N/A"
+    else:
+        return "N/A"
     print("- Incomplete -")
 
-def generate_occupation():  # TASK - Need Data, (Based on age, find list of many occupations)
+def generate_occupation(age):  # TASK - Need Data, (Based on age, find list of many occupations)
     print("- Incomplete -")
 
 
@@ -228,10 +228,10 @@ def generate_vice(age):
 
 
 def generate_morality(age):
-    moralities = [["Lawful good", 0], ["Neutral good", 0], ["Chaotic good", 0],
-                  ["Lawful neutral", 0], ["True neutral", 0], ["Chaotic neutral", 0],
-                  ["Lawful evil", 0], ["Neutral evil", 0], ["Chaotic evil", 0]]
-    print("- Incomplete -")
+    moralities = [["Lawful good", 30], ["Neutral good", 80], ["Chaotic good", 15],
+                  ["Lawful neutral", 50], ["True neutral", 60], ["Chaotic neutral", 30],
+                  ["Lawful evil", 20], ["Neutral evil", 15], ["Chaotic evil", 5]]
+    return bias_calculator(moralities)
 
 
 def user_interview():  # Primary method
@@ -255,8 +255,14 @@ def user_interview():  # Primary method
                     else:
                         for i in range(character_count):
                             # ----- TEST CODE START
-                            print(str(format(i + 1, ",")) + ": " + str(generate_gender()) + ", "
-                                  + str(generate_age()), str(generate_race()))
+                            temp_gender = generate_gender()
+                            temp_age = generate_age()
+                            temp_race = generate_race()
+                            temp_sexuality = generate_sexuality(temp_age, temp_gender)
+                            temp_morality = generate_morality(temp_age)
+                            print(str(format(i + 1, ",")) + ": " + str(temp_gender) + ", "
+                                  + str(temp_age) + ", " + str(temp_race) + ", " + str(temp_sexuality)
+                            + ", " + str(temp_morality))
                             # ----- TEST CODE END
                         try:
                             user_input = input("Would you like to generate another character? (Yes / No)\n").lower()
