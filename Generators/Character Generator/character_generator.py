@@ -41,15 +41,20 @@ import sys
 from tkinter import filedialog
 
 
-# Standard Value Declarations
+# Standard values
 user_input = ""
 character_count = 0
 
-# Bias Values
+# Bias values
 bias_check = False
 bias_gender = ["", 0]  # M/F, bias percentage
 bias_race = ["", 0]  # Caucasoid, Mongoloid, Negroid (Consider better, more generic names)
 bias_age = ["", 0]  # Will be based on age group? or range of ages (min/max)?
+
+# Stat values
+male_count = 0
+female_count = 0
+# average_age = 0
 
 
 class characterObject:
@@ -114,16 +119,15 @@ def bias_check():  # Allows users to tweak biases
 
 
 def bias_calculator(list):  # Input: list[(Key, Value), ...]
-    sum = 0
+    weighted_sum = 0
     list.sort(key=lambda sort_list: sort_list[1])  # sorts the list by the values
     for value in range(len(list)):
-        sum += list[value][1]
-    roll = random.randint(1, sum)
+        weighted_sum += list[value][1]
+    roll = random.randint(1, weighted_sum)
     for value in range(len(list)):
         # print("Roll: " + str(roll) + " <=? " + str(list[value][1]) + " (" + str(list[value][0]) + ")")
         if list[value][1] >= roll:
             return list[value][0]
-            break
         else:
             roll -= list[value][1]
 
@@ -146,21 +150,24 @@ def generate_gender():
             return "Female"
 
 
-def generate_age():  # Need to significantly increase the likelihood of the age being between 20 and 60.
-    # [TASK]
-    ## Perhaps it'll randomly choose an age range at random first (primarily 20-64, rest will be secondary chances)
-    ## Then it'll pick a random age within that age range.
-
-    # Infant (< 1)
-    # Toddler (1 - 3)
-    # Child (4 - 12)
-    # Teenager (13 - 19)
-    # Adult (20 - 64)
-    # Senior (65+)
+def generate_age():
+    age_groups = [["Infant", 5], ["Toddler", 10], ["Child", 20], ["Teenager", 40], ["Adult", 80], ["Senior", 30]]
+    selected_group = bias_calculator(age_groups)
     if bias_age[1] != 0:
         print("Age bias present")
     else:
-        return random.randint(0, 100)  # Need to make this mostly average between 20 and 60.
+        if selected_group == "Infant":
+            return 0
+        elif selected_group == "Toddler":
+            return random.randint(1, 3)
+        elif selected_group == "Child":
+            return random.randint(4, 12)
+        elif selected_group == "Teenager":
+            return random.randint(13, 19)
+        elif selected_group == "Adult":
+            return random.randint(20, 64)
+        elif selected_group == "Senior":
+            return random.randint(65, 100)
 
 
 def generate_race():
@@ -207,12 +214,16 @@ def generate_eye_color(ethncity):
 
 
 def generate_virtue(age):
-    virtues = [""]
+    virtues = [""]  # 7 heavenly virtues
+    if age >= 18:
+        print("Virtue Test")
     print("- Incomplete -")
 
 
 def generate_vice(age):
     vices = [""]  # 7 Deadly Sins
+    if age >= 18:
+        print("Vice Test")
     print("- Incomplete -")
 
 
@@ -266,3 +277,6 @@ def user_interview():  # Primary method
 # ----- TEMPORARY SECTION
 user_interview()
 # print(generate_gender())
+
+
+
