@@ -15,8 +15,8 @@
 # [] Wealth (Based on Age, bias against ages younger than 25, but they still have a chance at high wealth)
 # [] Hair Color (Based on Race, but can be a variety of colors in rare chances)
 # [] Eye Color (Based on Race, but can vary in rare chances)
-# [] Virtue (Based on the 7 heavenly virtues)
-# [] Vice (Based on Age and the 7 deadly sins, only one will be selected for each character. Vice will only be
+# [x] Virtue (Based on the 7 heavenly virtues)
+# [x] Vice (Based on Age and the 7 deadly sins, only one will be selected for each character. Vice will only be
 #          applied to characters above a certain age)
 # [x] Morality (Based on the morality chart, high chance of good, modest chance of neutral, and small chance of evil)
 
@@ -24,6 +24,7 @@
 import datetime
 import math
 import os
+import pandas as pd
 import random
 import sys
 from tkinter import filedialog
@@ -32,6 +33,10 @@ from tkinter import filedialog
 # Standard values
 user_input = ""
 character_count = 0
+time = datetime.datetime.now()
+# file_name = filedialog.askopenfilename()
+# currentDirectory = os.path.dirname(os.path.realpath(file_name))
+# nameProcessed = os.path.splitext(os.path.basename(name))[0]
 
 # Bias values
 bias_check = False
@@ -40,8 +45,8 @@ bias_race = ["", 0]  # Caucasoid, Mongoloid, Negroid (Consider better, more gene
 bias_age = ["", 0]  # Will be based on age group? or range of ages (min/max)?
 
 # Stat values
-male_count = 0
-female_count = 0
+stats_male_count = 0
+stats_female_count = 0
 # average_age = 0
 
 
@@ -141,7 +146,7 @@ def generate_gender():
 
 def generate_age():  # [TASK] Account for age bias, by showing current bias and allowing user to tweak whichever age
                      # group.
-    age_groups = [["Infant", 5], ["Toddler", 10], ["Child", 20], ["Teenager", 40], ["Adult", 80], ["Senior", 30]]
+    age_groups = [["Infant", 5], ["Toddler", 10], ["Child", 20], ["Teenager", 40], ["Adult", 120], ["Senior", 30]]
     selected_group = bias_calculator(age_groups)
     if bias_age[1] != 0:
         print("[IN PROGRESS] Age bias present")
@@ -168,11 +173,14 @@ def generate_race():
 def generate_ethnicity(race):  # TASK - Need Data
     print("- Incomplete -")
 
+
 def generate_name(first_or_last):  # TASK - Need Data. Names will vary based on gender/ethnicity, to a degree
     print("- Incomplete -")
 
+
 def generate_skin_tone(ethnicity):  # TASK - Need Data
     print("- Incomplete -")
+
 
 def generate_sexuality(age, gender):  # TASK - (U: Straight/Asexual, M: Gay, F: Lesbian)
     universal_sexualities = [["Straight", 90], ["Bisexual", 5], ["Asexual", 3]]
@@ -213,18 +221,21 @@ def generate_eye_color(ethncity):
     print("- Incomplete -")
 
 
-def generate_virtue(age):
-    virtues = [""]  # 7 heavenly virtues
-    if age >= 18:
-        print("Virtue Test")
-    print("- Incomplete -")
+def generate_virtue(age):  # The 7 heavenly virtues
+    virtues = [["Humility", 50], ["Charity", 50], ["Patience", 50], ["Kindness", 50], ["Chastity", 50],
+               ["Temperance", 50], ["Diligence", 50]]
+    if age >= 13:
+        return bias_calculator(virtues)
+    else:
+        return "N/A"
 
 
-def generate_vice(age):
-    vices = [""]  # 7 Deadly Sins
+def generate_vice(age):  # The 7 deadly sins
+    vices = [["Pride", 50], ["Greed", 50], ["Wrath", 50], ["Envy", 50], ["Lust", 50], ["Gluttony", 50], ["Sloth", 50]]
     if age >= 18:
-        print("Vice Test")
-    print("- Incomplete -")
+        return bias_calculator(vices)
+    else:
+        return "N/A"
 
 
 def generate_morality(age):
@@ -238,6 +249,8 @@ def generate_morality(age):
 
 
 def user_interview():  # Primary method
+    global stats_male_count
+    global stats_female_count
     while True:
         try:
             user_input = input("[Character Generator]\nWould you like to account for any biases? (Yes/No)\n").lower()
@@ -263,10 +276,21 @@ def user_interview():  # Primary method
                             temp_race = generate_race()
                             temp_sexuality = generate_sexuality(temp_age, temp_gender)
                             temp_morality = generate_morality(temp_age)
+                            temp_virtue = generate_virtue(temp_age)
+                            temp_vice = generate_vice(temp_age)
                             print(str(format(i + 1, ",")) + ": " + str(temp_gender) + ", "
                                   + str(temp_age) + ", " + str(temp_race) + ", " + str(temp_sexuality)
-                            + ", " + str(temp_morality))
+                                  + ", " + str(temp_morality) + ", " + str(temp_virtue) + ", " + str(temp_vice))
+
+                            if temp_gender == "Male":
+                                stats_male_count += 1
+                            elif temp_gender == "Female":
+                                stats_female_count += 1
                             # ----- TEST CODE END
+                        print("Total Males:   " + str(stats_male_count) + " (" +
+                              str(round(stats_male_count / (stats_male_count + stats_female_count) * 100)) + "%)")
+                        print("Total Females: " + str(stats_female_count) + " (" +
+                              str(round(stats_female_count / (stats_male_count + stats_female_count) * 100)) + "%)")
                         try:
                             user_input = input("Would you like to generate another character? (Yes / No)\n").lower()
                         except Exception:
